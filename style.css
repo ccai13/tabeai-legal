@@ -1,0 +1,49 @@
+/* 三言語の法務ページで共有するスタイル。素朴に保つ ——
+   Play の審査でも、古い端末のブラウザでも確実に読めることが最優先。 */
+:root {
+  --fg: #1c1b1f;
+  --fg-muted: #5f5b66;
+  --bg: #fffbfe;
+  --accent: #4a6b3f;
+  --line: #e3dfe6;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e6e1e5; --fg-muted:#c9c4cf; --bg:#141218; --accent:#a3c98f; --line:#332f38; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto; padding: 2rem 1.25rem 5rem; max-width: 46rem;
+  font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", "Noto Sans SC", sans-serif;
+  line-height: 1.85; color: var(--fg); background: var(--bg);
+  font-size: 16px; overflow-wrap: break-word;
+}
+h1 { font-size: 1.6rem; line-height: 1.4; margin: 0 0 .4rem; }
+h2 { font-size: 1.15rem; margin: 2.4rem 0 .6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+h2:first-of-type { border-top: 0; padding-top: 0; }
+h3 { font-size: 1rem; margin: 1.4rem 0 .4rem; color: var(--accent); }
+p, li { color: var(--fg); }
+ul { padding-left: 1.3rem; }
+li { margin: .3rem 0; }
+a { color: var(--accent); }
+table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size: .92rem; }
+th, td { border: 1px solid var(--line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+th { background: color-mix(in srgb, var(--accent) 12%, transparent); font-weight: 600; }
+.updated { color: var(--fg-muted); font-size: .88rem; margin: 0 0 2rem; }
+.note {
+  border-left: 3px solid var(--accent); padding: .7rem .9rem; margin: 1.2rem 0;
+  background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 0 6px 6px 0;
+}
+.note p { margin: .3rem 0; }
+/* 言語切り替え。JS が動かない環境では全言語をそのまま出す —— 法務ページは
+   読めないより長いほうがまし。JS が動いたときだけ body に .js が付き、
+   非表示の規則が有効になる。 */
+.langbar { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.langbar button {
+  font: inherit; font-size: .9rem; padding: .35rem .9rem; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: transparent; color: var(--fg-muted);
+}
+.langbar button[aria-selected="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+body:not(.js) .langbar { display: none; }
+body.js .lang:not(.active) { display: none; }
+.foot { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .88rem; color: var(--fg-muted); }
